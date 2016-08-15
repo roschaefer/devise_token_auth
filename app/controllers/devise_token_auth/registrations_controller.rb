@@ -98,7 +98,7 @@ module DeviseTokenAuth
     end
 
     def sign_up_params
-      params.permit(*params_for_resource(:sign_up))
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:email, :password, :password_confirmation])
     end
 
     def account_update_params
